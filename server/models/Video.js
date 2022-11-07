@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 const videoSchema = mongoose.Schema({
 
-    writer:{
-        type: Schema.Types.ObjectId,
-        ref:'User'
-    },
     title :{
         type: String,
         maxlength:50
@@ -29,6 +25,6 @@ const videoSchema = mongoose.Schema({
     }
 }, {timestamps:true})
 
-const Video = mongoose.model('User', videoSchema);
+const Video = mongoose.model('Video', videoSchema);
 
 module.exports = { Video }

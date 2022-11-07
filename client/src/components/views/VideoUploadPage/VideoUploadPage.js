@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import{ Typography, Button, Form, Input, Icon } from 'antd';
+import{ Typography, Button, Form, Input, Icon, Descriptions } from 'antd';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 
 
 const {TextArea} = Input;
@@ -21,7 +20,6 @@ const categoryOptions = [
 ]
 
 function VideoUploadPage() {
-
     const [videoTitle, setvideoTitle] = useState("")
     const [description, setdescription] = useState("")
     const [Private, setPrivate] = useState(0);
@@ -51,6 +49,7 @@ function VideoUploadPage() {
             .then(res =>{
                 if(res.data.success){
                     setfilePath(res.data.url)
+                    console.log(res.data.url)
                 }else{
                     alert('비디오 업로드를 실패했습니다.');
                 }
@@ -58,19 +57,24 @@ function VideoUploadPage() {
     }
 
     const onSubmit = (e) =>{
-        // e.preventDefault();
+        e.preventDefault();
 
-        // const variables = {
-        //     writer: ,
-        //     title: ,
-        //     description: ,
-        //     privacy: ,
-        //     filePath: ,
-        //     category: ,
-        // }
+        const variables = {
+            title: videoTitle,
+            description: description,
+            privacy: Private,
+            filePath: filePath,
+            category: category,
+        }
 
-        // axios.post('/api/video/uploadVideo', variables)
-
+        axios.post('/api/video/uploadVideo', variables)
+        .then(res =>{
+            if(res.data.success){
+                console.log(res.data)
+            }else{
+                alert('비디오 업로드에 실패 했습니다.');
+            }
+        })
     }
 
   return (
@@ -103,7 +107,6 @@ function VideoUploadPage() {
                         </div> 
                     )}
                 </Dropzone>
-                {/*Thumbnail*/}
                 <div>
                     <img />
                 </div>

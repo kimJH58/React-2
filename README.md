@@ -1,4 +1,4 @@
-# React-2
+# React-testProject (YouTube Clone)
 리액트를 공부하기 위해 온라인 강의와 함께 진행한 프로젝트 입니다.
 
  - React
